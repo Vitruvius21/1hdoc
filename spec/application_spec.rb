@@ -24,12 +24,13 @@ describe HDOC::Application do
     end
   end
 
-
   context '#init' do
     it 'should initialize a new configuration file' do
       @app.init
       expect(File.exist?(@target_file)).to eq(true)
       expect(File.read(@target_file)).to include('day: 0')
     end
+
+    it 'should clone the #100DaysOfCode repository'
   end
 end
