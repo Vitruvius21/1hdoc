@@ -1,6 +1,8 @@
 require 'rspec'
 require 'yaml'
 require 'json'
+require 'git'
+require 'fileutils'
 
 RSpec.configure do
   $PROGRAM_NAME = __FILE__

@@ -4,7 +4,7 @@ require_relative '../lib/1hdoc'
 describe HDOC::Application do
   before do
     @app = described_class
-    @target_file = File.expand_path '~/.1hdoc.yml'
+    @target_file = File.expand_path described_class::ENVIRONMENT[:configuration_file]
 
     make_backup(@target_file) if File.exist? @target_file
   end

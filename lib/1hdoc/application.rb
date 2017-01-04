@@ -1,4 +1,4 @@
-module HDOC
+  module HDOC
   ##
   # Implements a bridge between the CLI and the core classes
   # providing methods for talk with this ones.
