@@ -7,3 +7,7 @@ group :test do
   gem 'rdoc'
   gem 'rspec'
 end
+
+group :development do
+  gem 'rubocop'
+end
