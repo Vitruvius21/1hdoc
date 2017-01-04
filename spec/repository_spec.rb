@@ -13,7 +13,6 @@ describe HDOC::Repository do
     expect { described_class.new('./12eq') }.to output.to_stderr
   end
 
-
   context '.clone' do
     it 'should clone an existing repository' do
       described_class.clone(@repo_url, @repo_dest)
