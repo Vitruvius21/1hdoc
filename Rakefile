@@ -6,4 +6,4 @@ task :validate do
   sh 'rubocop'
 end
 
-task :default => :tests
+task default: :tests
