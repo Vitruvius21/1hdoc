@@ -27,4 +27,16 @@ describe HDOC::Configuration do
       expect(File.read(@target_file)).to include('it_works')
     end
   end
+
+  context '#update' do
+    it 'should update the configuration file' do
+      described_class.init(@target_file)
+      configuration = described_class.new(@target_file)
+
+      configuration.set :auto_push, false
+      configuration.update
+
+      expect(File.read(@target_file)).to include('auto_push: false')
+    end
+  end
 end

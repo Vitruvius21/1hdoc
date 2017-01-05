@@ -24,6 +24,15 @@ describe HDOC::Application do
     end
   end
 
+  before do
+    @repo_url = File.expand_path './tmp/test_repo'
+
+    $stdin = StringIO.new(@repo_url)
+    allow($stdout).to receive(:puts)
+  end
+
+  after { FileUtils.rm_rf @repo_url if File.directory? @repo_url }
+
   context '#init' do
     it 'should initialize a new configuration file' do
       @app.init
@@ -31,6 +40,27 @@ describe HDOC::Application do
       expect(File.read(@target_file)).to include('day: 0')
     end
 
-    it 'should clone the #100DaysOfCode repository'
+    it 'should clone the #100DaysOfCode repository' do
+      @app.init
+      expect(File.directory?(@repo_url)).to eq(true)
+    end
+  end
+
+  context '#commit' do
+    before { $stdin = StringIO.new("#{@repo_url}\n1\n2\n3\n") }
+
+    it 'should add a commit to the repository' do
+      @app.init
+      @app.commit
+
+      expect(Git.open(@repo_url).log.first.message).to eq('Add Day 1')
+    end
+
+    it 'should stop user to commit if a record already exist' do
+      @app.init
+      @app.commit
+
+      expect { @app.commit }.to output("You are done for today :)\n").to_stderr
+    end
   end
 end

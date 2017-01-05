@@ -24,5 +24,13 @@ module HDOC
     def load_options
       @options = @file_parser.load(File.read(file_path))
     end
+
+    def update
+      Configuration.init(@file_path, @file_parser, options)
+    end
+
+    def set(option, value)
+      @options[option] = value
+    end
   end
 end
