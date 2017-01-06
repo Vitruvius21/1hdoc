@@ -54,10 +54,9 @@ module HDOC
       @configuration.options[:last_commit_on] == Time.now.strftime('%Y-%m-%d')
     end
 
-
     def self.register_daily_progress
       log = Log.new(File.join(@configuration.options[:workspace],
-                    ENVIRONMENT[:log_file]))
+                              ENVIRONMENT[:log_file]))
       progress = Progress.new(@configuration.options[:day] + 1)
 
       progress.register

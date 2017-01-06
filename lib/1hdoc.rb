@@ -12,4 +12,3 @@ require_relative '1hdoc/core/repository'
 
 require_relative '1hdoc/version'
 require_relative '1hdoc/application'
-
