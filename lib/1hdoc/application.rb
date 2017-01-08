@@ -20,12 +20,26 @@ module HDOC
     # and create the configuration file in the user's $HOME path.
     def self.init
       puts 'Where I should locate the #100DaysOfCode repo (ex. ~/my_repo): '
-      @defaults[:workspace] = gets.chomp
+      @defaults[:workspace] = File.expand_path $stdin.gets.chomp
 
       Repository.clone(ENVIRONMENT[:repository_url], @defaults[:workspace])
       Configuration.init(ENVIRONMENT[:configuration_file], @defaults)
+      Log.reset(File.join(@defaults[:workspace], ENVIRONMENT[:log_file]))
 
       puts 'Here we are! You are ready to go.'
+    end
+
+    ##
+    # Push the progress to the repository.
+    def self.push
+      options = Configuration.new(ENVIRONMENT[:configuration_file]).options
+      repository = Repository.new(options[:workspace])
+
+      repository.push
+    end
+
+    def self.version
+      $stderr.puts HDOC.version
     end
 
     ##
@@ -37,17 +51,6 @@ module HDOC
       register_daily_progress
       commit_daily_progress
       update_last_record_day
-    end
-
-    ##
-    # Push the progress to the repository.
-    def self.push
-      repository = Repository.new(@configuration.options[:workspace])
-      repository.push
-    end
-
-    def self.version
-      $stderr.puts HDOC.version
     end
 
     def self.record_already_exist?

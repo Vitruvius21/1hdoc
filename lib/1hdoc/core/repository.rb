@@ -9,8 +9,8 @@ module HDOC
     end
 
     def initialize(repo_path, adapter = Git)
-      @repo = adapter.open(repo_path)
       @adapter = adapter
+      @repo = @adapter.open(repo_path)
     rescue ArgumentError
       $stderr.puts 'The given repository is not a valid one.'
     end
@@ -23,17 +23,8 @@ module HDOC
       $stderr.puts error
     end
 
-    def edit_origin(origin)
-      @repo.remote('origin').remove
-      @repo.add_remote('origin', origin)
-
-    rescue @adapter::GitExecuteError => error
-      $stderr.puts error
-    end
-
     def push
-      @repo.push
-
+      puts @repo.push
     rescue @adapter::GitExecuteError => error
       $stderr.puts error
     end
