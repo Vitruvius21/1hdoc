@@ -12,7 +12,7 @@ module HDOC
     @defaults = {
       auto_push: false,
       day: 0,
-      latest_commit_on: ''
+      last_commit_on: ''
     }
 
     ##
@@ -58,19 +58,22 @@ module HDOC
     end
 
     def self.register_daily_progress
-      log = Log.new(File.join(@configuration.options[:workspace],
-                              ENVIRONMENT[:log_file]))
-      progress = Progress.new(@configuration.options[:day] + 1)
+      options = @configuration.options
+
+      log = Log.new(File.join(options[:workspace], ENVIRONMENT[:log_file]))
+      progress = Progress.new(options[:day] + 1)
 
       progress.register
       log.append(progress.format)
     end
 
     def self.commit_daily_progress
-      repository = Repository.new(@configuration.options[:workspace])
-      repository.commit("Add Day #{@configuration.options[:day] + 1}")
+      options = @configuration.options
 
-      push if @configuration.options[:auto_push]
+      repository = Repository.new(options[:workspace])
+      repository.commit("Add Day #{options[:day] + 1}")
+
+      push if options[:auto_push]
     end
 
     def self.update_last_record_day

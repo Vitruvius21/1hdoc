@@ -4,7 +4,7 @@ require_relative '../lib/1hdoc/core/progress'
 describe HDOC::Progress do
   before do
     @progress = described_class.new(1)
-    @progress.record = { progress: 'Fixed CSS.' }
+    @progress.set_record(progress: 'Fixed CSS.')
   end
 
   context '#format' do

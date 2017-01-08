@@ -2,7 +2,7 @@ module HDOC
   ##
   # Provides methods for register and format user's daily progress.
   class Progress
-    attr_accessor :record
+    attr_reader :record
 
     QUESTIONS = {
       progress: 'Your progress: ',
@@ -33,6 +33,10 @@ module HDOC
 
     def format_field(field, value)
       "**#{field.capitalize}:** #{value}\n\n"
+    end
+
+    def set_record(record)
+      @record = record
     end
   end
 end
