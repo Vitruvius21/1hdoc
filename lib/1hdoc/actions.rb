@@ -16,7 +16,7 @@ module HDOC
     end
 
     def open_repository
-      option_configuration_file unless @configuration
+      open_configuration_file unless @configuration
       @repository = Repository.new(@options[:workspace])
     end
 

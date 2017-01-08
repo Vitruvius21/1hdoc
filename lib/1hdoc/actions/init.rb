@@ -16,7 +16,7 @@ module HDOC
     private
 
     def initialize_workspace
-      PARSERS[:repo].clone(ENVIRONMENT[:repository_url], @workspace)
+      Repository.clone(ENVIRONMENT[:repository_url], @workspace)
       Log.reset(File.join(@workspace, ENVIRONMENT[:log_file]))
     end
 
