@@ -3,6 +3,7 @@
 # stdlib
 require 'yaml'
 require 'git'
+require 'optparse'
 
 # 1hdoc
 require_relative '1hdoc/core/configuration'
@@ -12,3 +13,4 @@ require_relative '1hdoc/core/repository'
 
 require_relative '1hdoc/version'
 require_relative '1hdoc/application'
+require_relative '1hdoc/cli'
