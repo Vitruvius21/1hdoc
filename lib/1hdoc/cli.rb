@@ -29,15 +29,15 @@ module HDOC
     private
 
     def check_for_configuration
-      unless File.exist? Application::ENVIRONMENT[:configuration_file]
+      unless File.exist? Actions::ENVIRONMENT[:configuration_file]
         $stderr.puts 'Unable to find configuration file..'
-        Application.init
+        Actions.init
       end
     end
 
     def initialize_options
       AVAILABLE_COMMANDS.each do |command|
-        @options.on(*command) { Application.send(remove_dashes(command[1])) }
+        @options.on(*command) { Actions.send(remove_dashes(command[1])) }
       end
     end
 

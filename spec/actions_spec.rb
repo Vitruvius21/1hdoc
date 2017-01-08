@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../lib/1hdoc'
 
-describe HDOC::Application do
+describe HDOC::Actions do
   before do
     @app = described_class
     @target_file = File.expand_path described_class::ENVIRONMENT[:configuration_file]

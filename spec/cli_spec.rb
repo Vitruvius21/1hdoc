@@ -4,7 +4,7 @@ require_relative '../lib/1hdoc'
 describe HDOC::CLI do
   before do
     @app = described_class.new
-    @target_file = File.expand_path HDOC::Application::ENVIRONMENT[:configuration_file]
+    @target_file = File.expand_path HDOC::Actions::ENVIRONMENT[:configuration_file]
 
     make_backup(@target_file) if File.exist? @target_file
   end
