@@ -2,6 +2,8 @@ module HDOC
   ##
   # Provides the CLI interface for interact with the program.
   class CLI
+    include Actions
+
     AVAILABLE_COMMANDS = [
       ['-i', '--init', 'Initialize necessary files.'],
       ['-c', '--commit', 'Register your progress and sync it.'],
@@ -29,15 +31,15 @@ module HDOC
     private
 
     def check_for_configuration
-      unless File.exist? Actions::ENVIRONMENT[:configuration_file]
+      unless File.exist? ENVIRONMENT[:configuration_file]
         $stderr.puts 'Unable to find configuration file..'
-        Actions.init
+        init
       end
     end
 
     def initialize_options
       AVAILABLE_COMMANDS.each do |command|
-        @options.on(*command) { Actions.send(remove_dashes(command[1])) }
+        @options.on(*command) { send(remove_dashes(command[1])) }
       end
     end
 

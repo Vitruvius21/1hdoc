@@ -2,7 +2,7 @@ module HDOC
   module Actions
     ##
     # Register the daily progress.
-    def self.commit
+    def commit
       @configuration = Configuration.new(ENVIRONMENT[:configuration_file])
       return $stderr.puts 'You are done for today :)' if record_already_exist?
 
@@ -13,11 +13,11 @@ module HDOC
 
     private
 
-    def self.record_already_exist?
+    def record_already_exist?
       @configuration.options[:last_commit_on] == Time.now.strftime('%Y-%m-%d')
     end
 
-    def self.register_daily_progress
+    def register_daily_progress
       options = @configuration.options
 
       log = Log.new(File.join(options[:workspace], ENVIRONMENT[:log_file]))
@@ -27,7 +27,7 @@ module HDOC
       log.append(progress.format)
     end
 
-    def self.commit_daily_progress
+    def commit_daily_progress
       options = @configuration.options
 
       repository = Repository.new(options[:workspace])
@@ -36,7 +36,7 @@ module HDOC
       push if options[:auto_push]
     end
 
-    def self.update_last_record_day
+    def update_last_record_day
       @configuration.set :day, @configuration.options[:day] + 1
       @configuration.set :last_commit_on, Time.now.strftime('%Y-%m-%d')
 

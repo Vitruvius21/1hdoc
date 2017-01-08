@@ -1,6 +1,6 @@
 module HDOC
   module Actions
-    def self.version
+    def version
       $stderr.puts HDOC.version
     end
   end

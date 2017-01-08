@@ -3,7 +3,7 @@ module HDOC
     ##
     # Initialize the necessary files cloning the #100DaysOfCode's repo
     # and create the configuration file in the user's $HOME path.
-    def self.init
+    def init
       puts 'Where I should locate the #100DaysOfCode repo (ex. ~/my_repo): '
       @workspace = File.expand_path $stdin.gets.chomp
 
@@ -16,7 +16,7 @@ module HDOC
 
     private
 
-    def self.initialize_configuration_file
+    def initialize_configuration_file
       defaults = { auto_push: false, day: 0, workspace: @workspace }
       Configuration.init(ENVIRONMENT[:configuration_file], defaults)
     end
