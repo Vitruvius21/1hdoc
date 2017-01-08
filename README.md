@@ -1,5 +1,7 @@
 # 1hdoc
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f71e6654548045698704abb8f7c4b4af)](https://www.codacy.com/app/dom-corvasce/1hdoc?utm_source=github.com&utm_medium=referral&utm_content=domcorvasce/1hdoc&utm_campaign=badger)
+
 Keep track of your progress during #100DaysOfCode event.
 
 ## Installation
