@@ -56,7 +56,13 @@ describe HDOC::Actions do
       init
       commit
 
-      expect(Git.open(@repo_url).log.first.message).to eq('Add Day 1')
+      git = Git.open(@repo_url)
+
+      ['user.name', 'user.email'].each do |field|
+        git.config(field, 'test') unless git.config(field)
+      end
+
+      expect(git.log.first.message).to eq('Add Day 1')
     end
 
     it 'should stop user to commit if a record already exist' do
