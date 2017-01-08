@@ -15,8 +15,6 @@ describe HDOC::Actions do
     if backup?(@target_file)
       File.write(@target_file, File.read(@target_file + '-backup'))
       File.delete(@target_file + '-backup')
-    else
-      File.delete(@target_file) if File.exist? @target_file
     end
   end
 

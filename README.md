@@ -1,5 +1,7 @@
 # 1hdoc
 
+[![Gem Version](https://badge.fury.io/rb/1hdoc.svg)](https://badge.fury.io/rb/1hdoc)
+
 Keep track of your progress during #100DaysOfCode event.
 
 ## Installation
