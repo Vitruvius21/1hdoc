@@ -3,10 +3,8 @@ module HDOC
     ##
     # Push the progress to the repository.
     def push
-      options = Configuration.new(ENVIRONMENT[:configuration_file]).options
-      repository = Repository.new(options[:workspace])
-
-      repository.push
+      option_repository
+      @repository.push
     end
   end
 end

@@ -7,14 +7,18 @@ module HDOC
       puts 'Where I should locate the #100DaysOfCode repo (ex. ~/my_repo): '
       @workspace = File.expand_path $stdin.gets.chomp
 
-      Repository.clone(ENVIRONMENT[:repository_url], @workspace)
-      Log.reset(File.join(@workspace, ENVIRONMENT[:log_file]))
-
+      initialize_workspace
       initialize_configuration_file
-      puts 'Here we are! You are ready to go.'
+
+      $stderr.puts 'Here we are! You are ready to go.'
     end
 
     private
+
+    def initialize_workspace
+      PARSERS[:repo].clone(ENVIRONMENT[:repository_url], @workspace)
+      Log.reset(File.join(@workspace, ENVIRONMENT[:log_file]))
+    end
 
     def initialize_configuration_file
       defaults = { auto_push: false, day: 0, workspace: @workspace }

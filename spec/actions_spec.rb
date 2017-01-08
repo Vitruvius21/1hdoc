@@ -28,9 +28,10 @@ describe HDOC::Actions do
 
   before do
     @repo_url = File.expand_path './tmp/test_repo'
-
     $stdin = StringIO.new(@repo_url)
+
     allow($stdout).to receive(:puts)
+    allow($stderr).to receive(:puts)
   end
 
   after { FileUtils.rm_rf @repo_url if File.directory? @repo_url }
