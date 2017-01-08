@@ -3,9 +3,6 @@ require_relative '../lib/1hdoc/core/repository'
 
 describe HDOC::Repository do
   before do
-    ENV['GIT_AUTHOR_NAME'] = 'test'
-    ENV['GIT_AUTHOR_EMAIL'] = 'example@example.com'
-
     @repo_url = 'https://github.com/Kallaway/100-days-of-code'
     @repo_dest = File.expand_path './tmp/'
   end

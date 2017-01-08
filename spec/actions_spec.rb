@@ -5,9 +5,6 @@ describe HDOC::Actions do
   include described_class
 
   before do
-    ENV['GIT_AUTHOR_NAME'] = 'test'
-    ENV['GIT_AUTHOR_EMAIL'] = 'example@example.com'
-
     @app = described_class
     @target_file = File.expand_path described_class::ENVIRONMENT[:configuration_file]
 
