@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/1hdoc'
+
+cli = HDOC::CLI.new
+cli.run

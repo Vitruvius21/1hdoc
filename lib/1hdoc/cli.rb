@@ -5,7 +5,7 @@ module HDOC
     AVAILABLE_COMMANDS = [
       ['-i', '--init', 'Initialize necessary files.'],
       ['-c', '--commit', 'Register your progress and sync it.'],
-      ['-s', '--sync', 'Manually synchronize your online repository.'],
+      ['-p', '--push', 'Manually synchronize your online repository.'],
       ['-v', '--version', 'Show program version.']
     ].freeze
 
