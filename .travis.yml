@@ -1,7 +1,7 @@
 language: ruby
 script:
-  - git config user.name 'test'
-  - git config user.email 'example@example.com'
+  - git config --global user.email "you@example.com"
+  - git config --global user.name "Your Name"
   - bundle exec rake
 rvm:
   - 2.2
