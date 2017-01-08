@@ -1,4 +1,8 @@
 language: ruby
+script:
+  - git config user.name 'test'
+  - git config user.email 'example@example.com'
+  - bundle exec rake
 rvm:
   - 2.2
   - 2.1
