@@ -3,18 +3,18 @@ require_relative '../lib/1hdoc'
 
 describe HDOC::CLI do
   before do
-    @app = described_class.new
-    @target_file = File.expand_path described_class::ENVIRONMENT[:configuration_file]
+    @target_file = File.expand_path '~/.1hdoc.yml'
 
     make_backup(@target_file) if File.exist? @target_file
+    File.write(@target_file, '')
+
+    @app = described_class.new
   end
 
   after do
     if backup?(@target_file)
       File.write(@target_file, File.read(@target_file + '-backup'))
       File.delete(@target_file + '-backup')
-    else
-      File.delete(@target_file) if File.exist? @target_file
     end
   end
 
