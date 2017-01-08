@@ -5,6 +5,9 @@ describe HDOC::Actions do
   include described_class
 
   before do
+    ENV['GIT_AUTHOR_NAME'] = 'test'
+    ENV['GIT_AUTHOR_EMAIL'] = 'example@example.com'
+
     @app = described_class
     @target_file = File.expand_path described_class::ENVIRONMENT[:configuration_file]
 
@@ -56,13 +59,7 @@ describe HDOC::Actions do
       init
       commit
 
-      git = Git.open(@repo_url)
-
-      ['user.name', 'user.email'].each do |field|
-        git.config(field, 'test') unless git.config(field)
-      end
-
-      expect(git.log.first.message).to eq('Add Day 1')
+      expect(Git.open(@repo_url).log.first.message).to eq('Add Day 1')
     end
 
     it 'should stop user to commit if a record already exist' do

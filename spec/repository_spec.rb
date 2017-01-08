@@ -3,6 +3,9 @@ require_relative '../lib/1hdoc/core/repository'
 
 describe HDOC::Repository do
   before do
+    ENV['GIT_AUTHOR_NAME'] = 'test'
+    ENV['GIT_AUTHOR_EMAIL'] = 'example@example.com'
+
     @repo_url = 'https://github.com/Kallaway/100-days-of-code'
     @repo_dest = File.expand_path './tmp/'
   end
@@ -26,12 +29,7 @@ describe HDOC::Repository do
   context '#commit' do
     before do
       described_class.clone(@repo_url, @repo_dest)
-      git = Git.open(@repo_dest)
       @repo = described_class.new(@repo_dest)
-
-      ['user.name', 'user.email'].each do |field|
-        git.config(field, 'test') unless git.config(field)
-      end
     end
 
     it 'should add a commit' do
