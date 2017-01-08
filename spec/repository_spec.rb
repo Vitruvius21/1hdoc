@@ -26,7 +26,12 @@ describe HDOC::Repository do
   context '#commit' do
     before do
       described_class.clone(@repo_url, @repo_dest)
+      git = Git.open(@repo_dest)
       @repo = described_class.new(@repo_dest)
+
+      ['user.name', 'user.email'].each do |field|
+        git.config(field, 'test') unless git.config(field)
+      end
     end
 
     it 'should add a commit' do
