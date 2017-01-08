@@ -3,6 +3,9 @@ require 'yaml'
 require 'json'
 require 'git'
 require 'fileutils'
+require 'codacy-coverage'
+
+Codacy::Reporter.start
 
 RSpec.configure do
   $PROGRAM_NAME = __FILE__
