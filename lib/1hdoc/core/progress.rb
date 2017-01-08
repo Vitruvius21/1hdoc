@@ -12,7 +12,7 @@ module HDOC
 
     def initialize(current_day)
       @current_day = current_day
-      @current_date = Time.now.strftime('%Y-%m-%d')
+      @current_date = Time.now.strftime('%B %d, %Y')
 
       @record = {}
     end
@@ -25,7 +25,7 @@ module HDOC
     end
 
     def format
-      result = "### Day #{@current_day}\n"
+      result = "### Day #{@current_day}: #{@current_date}\n"
       record.each { |field, value| result << format_field(field, value) }
 
       result
