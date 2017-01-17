@@ -19,8 +19,7 @@ module HDOC
 
     def register
       QUESTIONS.each do |field, question|
-        puts question
-        @record[field] = gets.chomp
+        @record[field] = Readline.readline(question, false)
       end
     end
 

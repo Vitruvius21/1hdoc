@@ -9,12 +9,15 @@ describe HDOC::Actions do
     @target_file = File.expand_path described_class::ENVIRONMENT[:configuration_file]
 
     make_backup(@target_file) if File.exist? @target_file
+    File.write(@target_file, '')
   end
 
   after do
     if backup?(@target_file)
       File.write(@target_file, File.read(@target_file + '-backup'))
       File.delete(@target_file + '-backup')
+    else
+      File.delete(@target_file)
     end
   end
 
@@ -48,7 +51,9 @@ describe HDOC::Actions do
   end
 
   context '#commit' do
-    before { $stdin = StringIO.new("#{@repo_url}\n1\n2\n3\n") }
+    before do
+      allow(Readline).to receive(:readline)
+    end
 
     it 'should add a commit to the repository' do
       init

@@ -4,6 +4,7 @@
 require 'yaml'
 require 'git'
 require 'optparse'
+require 'readline'
 
 # 1hdoc
 require_relative '1hdoc/core/configuration'

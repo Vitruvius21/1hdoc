@@ -4,6 +4,7 @@ require 'json'
 require 'git'
 require 'fileutils'
 require 'codacy-coverage'
+require 'readline'
 
 Codacy::Reporter.start
 
