@@ -1,20 +1,17 @@
 require 'rspec'
 require 'yaml'
-require 'json'
 require 'git'
-require 'fileutils'
 require 'readline'
 
 begin
   require 'codacy-coverage'
   Codacy::Reporter.start
-rescue LoadError => error 
+rescue LoadError => error
 end
 
-RSpec.configure do
-  $PROGRAM_NAME = __FILE__
-
-  # Backup a file if it exists creating a copy with the `-backup` prefix.
+##
+# Provides methods used across various specs.
+module RSpecMixin
   def make_backup(filename)
     File.open(filename + '-backup', 'w') do |backup_file|
       backup_file.puts File.read(filename)
@@ -24,4 +21,9 @@ RSpec.configure do
   def backup?(filename)
     File.exist? filename + '-backup'
   end
+end
+
+RSpec.configure do |config|
+  $PROGRAM_NAME = __FILE__
+  config.include RSpecMixin
 end

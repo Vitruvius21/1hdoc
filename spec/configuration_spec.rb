@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'spec_helper'
 require_relative '../lib/1hdoc/core/configuration'
 
