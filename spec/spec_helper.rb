@@ -3,10 +3,13 @@ require 'yaml'
 require 'json'
 require 'git'
 require 'fileutils'
-require 'codacy-coverage'
 require 'readline'
 
-Codacy::Reporter.start
+begin
+  require 'codacy-coverage'
+  Codacy::Reporter.start
+rescue LoadError => error 
+end
 
 RSpec.configure do
   $PROGRAM_NAME = __FILE__

@@ -29,43 +29,44 @@ describe HDOC::Actions do
 
   before do
     @repo_url = File.expand_path './tmp/test_repo'
-    $stdin = StringIO.new(@repo_url)
 
-    allow($stdout).to receive(:puts)
+    $stdin = StringIO.new("n\n" + @repo_url)
+    $stdout = File.open('.tmp_output', 'w')
+
+    allow(Readline).to receive(:readline)
     allow($stderr).to receive(:puts)
   end
 
-  after { FileUtils.rm_rf @repo_url if File.directory? @repo_url }
+  after do
+    FileUtils.rm_rf @repo_url if File.directory? @repo_url
+    File.delete('.tmp_output')
+
+    $stdout = STDOUT
+  end
 
   context '#init' do
+    before { init }
+
     it 'should initialize a new configuration file' do
-      init
-      expect(File.exist?(@target_file)).to eq(true)
       expect(File.read(@target_file)).to include('day: 0')
     end
 
     it 'should clone the #100DaysOfCode repository' do
-      init
       expect(File.directory?(@repo_url)).to eq(true)
     end
   end
 
   context '#commit' do
     before do
-      allow(Readline).to receive(:readline)
+      init
+      commit
     end
 
     it 'should add a commit to the repository' do
-      init
-      commit
-
       expect(Git.open(@repo_url).log.first.message).to eq('Add Day 1')
     end
 
     it 'should stop user to commit if a record already exist' do
-      init
-      commit
-
       expect { commit }.to output("You are done for today :)\n").to_stderr
     end
   end
