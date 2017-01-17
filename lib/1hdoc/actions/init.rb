@@ -48,6 +48,7 @@ module HDOC
         workspace: @workspace
       }.merge(options)
 
+      defaults[:workspace] = File.expand_path defaults[:workspace]
       Configuration.init(ENVIRONMENT[:configuration_file], defaults)
     end
   end
