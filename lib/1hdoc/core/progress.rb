@@ -33,9 +33,5 @@ module HDOC
     def format_field(field, value)
       "**#{field.capitalize}:** #{value}\n\n"
     end
-
-    def set_record(record)
-      @record = record
-    end
   end
 end
