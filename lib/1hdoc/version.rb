@@ -1,7 +1,7 @@
 ##
 # Provides all necessary features implemented by 1hdoc.
 module HDOC
-  VERSION = '0.2.2'.freeze
+  VERSION = '0.2.3'.freeze
   CODENAME = 'Phoenix'.freeze
 
   def self.version
