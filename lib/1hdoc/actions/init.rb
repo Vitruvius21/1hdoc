@@ -10,7 +10,7 @@ module HDOC
     # and create the configuration file in the user's $HOME path.
     def init
       print 'Do you already maintain a log on your PC? [yn] '
-      already_active = gets.chomp.downcase
+      already_active = $stdin.gets.chomp.downcase
 
       return customize_configuration_file if already_active == 'y'
 
