@@ -2,6 +2,8 @@ module HDOC
   ##
   # Provides an interface for interact with Git repositories.
   class Repository
+    attr_reader :adapter
+
     def self.clone(url, destination, adapter = Git)
       adapter.clone(url, destination)
     rescue adapter::GitExecuteError => error
@@ -22,6 +24,8 @@ module HDOC
 
     def push
       @repo.push
+    rescue adapter::GitExecuteError => error
+      $stderr.puts error.message
     end
   end
 end
