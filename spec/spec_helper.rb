@@ -3,10 +3,9 @@ require 'yaml'
 require 'git'
 require 'readline'
 
-begin
+if ENV['CI']
   require 'codacy-coverage'
   Codacy::Reporter.start
-rescue LoadError => error
 end
 
 ##
