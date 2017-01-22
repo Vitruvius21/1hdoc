@@ -2,6 +2,7 @@ module HDOC
   ##
   # Provides the CLI interface for interact with the program.
   class CLI
+    attr_reader :options
     include Actions
 
     AVAILABLE_COMMANDS = [
@@ -17,34 +18,35 @@ module HDOC
     end
 
     def run
-      @option_parser.new do |opts|
-        opts.banner = 'Usage: 1hdoc [options]'
-
-        @options = opts
-        initialize_options
-      end.parse!
-
+      start_option_parser
     rescue @option_parser::ParseError
-      $stderr.puts @options
+      $stderr.puts options
     end
 
     private
 
     def check_for_configuration
       unless File.exist? ENVIRONMENT[:configuration_file]
-        $stderr.puts 'Unable to find configuration file..'
+        $stderr.puts 'Seems like it is the first time you use 1hdoc..'
         init
       end
     end
 
-    def initialize_options
-      AVAILABLE_COMMANDS.each do |command|
-        @options.on(*command) { send(remove_dashes(command[1])) }
-      end
+    def start_option_parser
+      @option_parser.new do |opts|
+        opts.banner = 'Usage: 1hdoc [options]'
+
+        @options = opts
+        initialize_options
+      end.parse!
     end
 
-    def remove_dashes(command)
-      command.sub('--', '')
+    def initialize_options
+      AVAILABLE_COMMANDS.each do |command|
+        # Retrieve method's name deleting double dashes from command.
+        target_method = command[1].gsub('--', '')
+        options.on(*command) { send(target_method) }
+      end
     end
   end
 end

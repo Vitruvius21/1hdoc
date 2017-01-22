@@ -19,7 +19,7 @@ module HDOC
 
     def register_daily_progress
       open_log
-      progress = Progress.new(@options[:day] + 1)
+      progress = Progress.new(@options[:day].to_i + 1)
 
       progress.register
       @log.append(progress.format)
@@ -27,13 +27,13 @@ module HDOC
 
     def commit_daily_progress
       open_repository
-      @repository.commit("Add Day #{@options[:day] + 1}")
+      @repository.commit("Add Day #{@options[:day].to_i + 1}")
 
       push if @options[:auto_push]
     end
 
     def update_last_record_day
-      @configuration.set :day, @configuration.options[:day] + 1
+      @configuration.set :day, @configuration.options[:day].to_i + 1
       @configuration.set :last_commit_on, Time.now.strftime('%Y-%m-%d')
 
       @configuration.update

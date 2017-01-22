@@ -1,7 +1,7 @@
 module HDOC
   ##
   # Provides methods for read configuration options by a file.
-  # By default, it uses YAML as configuration file's parse
+  # By default, it uses YAML as configuration file's parser.
   class Configuration
     attr_reader :options, :file_path
 
@@ -16,8 +16,9 @@ module HDOC
     def initialize(file_path, file_parser = YAML)
       @file_path = File.expand_path(file_path)
       @file_parser = file_parser
+      @options = {}
 
-      raise Errno::ENOENT unless File.exist? @file_path
+      raise "Unable to find #{@file_path}" unless File.exist? @file_path
       load_options
     end
 

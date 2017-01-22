@@ -18,15 +18,10 @@ module HDOC
     def commit(message)
       @repo.add(all: true)
       @repo.commit(message)
-
-    rescue @adapter::GitExecuteError => error
-      $stderr.puts error
     end
 
     def push
-      puts @repo.push
-    rescue @adapter::GitExecuteError => error
-      $stderr.puts error
+      @repo.push
     end
   end
 end
