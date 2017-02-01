@@ -105,13 +105,7 @@ If you turn off `auto_push` you can push to the repo typing:
 
 Everyone can contribute to this project:
 
-  - Fixing bugs
-  - Fixing my bad english
-  - Proposing new features
-  - Improving code
-  - and doing a plethora of other things..
-  
-Feel free to open an issue and propose a pull request.
+Feel free to open an issue or propose a pull request.
 
 ## License
 
