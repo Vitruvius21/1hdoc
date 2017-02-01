@@ -88,6 +88,19 @@ If you turn off `auto_push` you can push to the repo typing:
 1hdoc --push
 ```
 
+## FAQ
+
+- **I got an error when I try to use 1hdoc. How can I resolve?**
+
+  If the error is the following:
+  
+  ```shell
+  `require': libreadline.so.6: cannot open shared object fie
+  ```
+  
+  this means Ruby tries to get the older version of Readline so you need 
+  to reinstall it like reported [here](https://github.com/deivid-rodriguez/byebug/issues/307).
+
 ## Contribute
 
 Everyone can contribute to this project:
