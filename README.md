@@ -67,7 +67,7 @@ Have you ended Day 2?
 Great! Let's 1hdoc track your progress. Type:
 
 ```shell
-1hdoc --commit
+1hdoc -c
 ```
 
 By default, 1hdoc don't push to the repo automatically after you 
@@ -85,7 +85,7 @@ You can change this behavior by assigning `true` to `auto_push` option in
 If you turn off `auto_push` you can push to the repo typing:
 
 ```shell
-1hdoc --push
+1hdoc -p
 ```
 
 ## FAQ
