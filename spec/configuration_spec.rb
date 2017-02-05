@@ -10,33 +10,29 @@ describe HDOC::Configuration do
     expect { described_class.new('~/.123x.yml') }.to raise_error(/Unable to find/)
   end
 
-  context '.init' do
-    it 'should accept a custom file parser' do
-      described_class.init(@target_file, JSON, it_works: true)
-      configuration = described_class.new(@target_file, JSON)
+  it 'should accept a custom file parser' do
+    described_class.init(@target_file, JSON, it_works: true)
+    configuration = described_class.new(@target_file, JSON)
 
-      expect(configuration.options['it_works']).to eq(true)
-    end
-
-    it 'should initialize a new configuration file' do
-      described_class.init(@target_file)
-      expect(File.exist?(@target_file)).to eq(true)
-    end
-
-    it 'should write the given options on the configuration file' do
-      described_class.init(@target_file, it_works: true)
-    end
+    expect(configuration.options['it_works']).to eq(true)
   end
 
-  context '#update' do
-    it 'should update the configuration file' do
-      described_class.init(@target_file)
-      configuration = described_class.new(@target_file)
+  it 'should initialize a new configuration file' do
+    described_class.init(@target_file)
+    expect(File.exist?(@target_file)).to eq(true)
+  end
 
-      configuration.set :auto_push, false
-      configuration.update
+  it 'should write the given options on the configuration file' do
+    described_class.init(@target_file, it_works: true)
+  end
 
-      expect(File.read(@target_file)).to include('auto_push: false')
-    end
+  it 'should update the configuration file' do
+    described_class.init(@target_file)
+    configuration = described_class.new(@target_file)
+
+    configuration.set :auto_push, false
+    configuration.update
+
+    expect(File.read(@target_file)).to include('auto_push: false')
   end
 end
