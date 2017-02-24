@@ -5,3 +5,8 @@
 # 0.2.4, 5th Feb 2017
 ### Changed
 - Now 1hdoc warn user if she tries to push multiple times.
+
+# 0.2.5, 24th Feb 2017
+### Added
+- Multi-line text when register your progress.
+

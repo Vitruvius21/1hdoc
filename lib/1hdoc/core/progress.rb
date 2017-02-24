@@ -18,8 +18,16 @@ module HDOC
     end
 
     def register
+      $stderr.puts 'Finish your answer by typing :!'
+
       QUESTIONS.each do |field, question|
-        @record[field] = Readline.readline(question, false)
+        $stderr.puts question
+        @record[field] = ''
+
+        while text_line = Readline.readline
+          @record[field] << text_line.sub(':!', '')
+          break if text_line[':!']
+        end
       end
     end
 
