@@ -25,7 +25,7 @@ module HDOC
         @record[field] = ''
 
         while text_line = Readline.readline
-          @record[field] << text_line.sub(':!', '')
+          @record[field] += text_line.sub(':!', '') + "\n"
           break if text_line[':!']
         end
       end
